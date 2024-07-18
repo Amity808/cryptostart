@@ -1,8 +1,6 @@
 import React from 'react'
-import Image from 'next/image'
-import CustomInput from '../components/ui/CustomInput';
 import GiftForm from "../components/GiftForm"
-import toast, { Toaster } from 'react-hot-toast';
+
 
 
 const Gift = () => {

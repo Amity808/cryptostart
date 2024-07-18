@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SendGiftMail from "./email/SendGiftMail";
 import CustomInput from "./ui/CustomInput";
 import { render } from "@react-email/components";
 import { peanut } from "@squirrel-labs/peanut-sdk";
 import { ethers } from "ethers";
-import toast from "react-hot-toast";
-import { useAccount, useReadContract, useSimulateContract, useWriteContract } from "wagmi";
+// import toast from "react-hot-toast";
+// import { useAccount, useReadContract, useSimulateContract, useWriteContract } from "wagmi";
 import useLoading from "~~/hooks/useLoading";
 import { useScaffoldWriteContract } from "../hooks/scaffold-eth";
 
@@ -25,7 +25,7 @@ const GiftForm = () => {
   const [subjectLine, setSubjectLine] = useState("");
 
 
-  const { writeContractAsync, isPending } = useScaffoldWriteContract("StartPay")
+  const { writeContractAsync } = useScaffoldWriteContract("StartPay")
   const createPyament = async () => {
     if (!window.ethereum) {
         throw new Error("MetaMask is not installed");
@@ -61,6 +61,7 @@ const GiftForm = () => {
   };
 
   const sendEmail = async () => {
+    const emailHtml = render(<SendGiftMail userFirstname={recipentName} address={address} link={link} />);
     try {
       const response = await fetch('/api/send/email', {
         method: "POST",
@@ -69,9 +70,9 @@ const GiftForm = () => {
         },
         body: JSON.stringify({
           email: 'codestorm808@gmail.com',
-          reciever: "bolarinwamuhdsodiq0@gmail.com",
-          subject: "subjectLine",
-          message: "emailHTML",
+          reciever: email,
+          subject: subjectLine,
+          message: emailHtml,
         })
       });
       console.log(response)
@@ -142,6 +143,7 @@ const GiftForm = () => {
         </button>
       </form>
       <button onClick={sendEmail}>pay</button>
+      <p>{txStatus}</p>
     </div>
   );
 };
