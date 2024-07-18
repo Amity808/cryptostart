@@ -1,6 +1,6 @@
 import React from "react"
 
-const CustomInput = ({placeholder, name, id, value, className, ...props}) => {
+const CustomInput = ({placeholder, name, id, className, ...props}) => {
   return (
     <div>
       <input type="text" placeholder={placeholder} id={id} className={`input input-bordered w-full max-w-xs ${className}`} name={name}  {...props}/>

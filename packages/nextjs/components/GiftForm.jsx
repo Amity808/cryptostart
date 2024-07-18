@@ -15,7 +15,7 @@ import { useScaffoldWriteContract } from "../hooks/scaffold-eth";
 const GiftForm = () => {
   const { isLoading: isLoadGift, startLoading: startLoadPGift, stopLoading: stopLoadPGift } = useLoading();
   const [amount, setAmount] = useState("");
-  const [linkStatus, setLinkStatus] = useState("");
+ 
   const { address } = useAccount();
   const [link, setLink] = useState("");
   const [txStatus, setTxStatus] = useState("");
@@ -46,7 +46,7 @@ const GiftForm = () => {
         },
         linkDetails: {
             chainId, 
-            tokenAmount: '0.001',
+            tokenAmount: amount,
             tokenDecimals: 18,
             tokenType: 0
         }
