@@ -11,29 +11,29 @@ import { ThemeProvider } from "~~/components/ThemeProvider";
 
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
-  const headerStyle = {
-    backgroundImage: `url('/bg-dashboard.png')`,
-    /* Additional styles can be added here */
+  // const headerStyle = {
+  //   backgroundImage: `url('/bg-dashboard.png')`,
+  //   /* Additional styles can be added here */
 
-    // Set background size to cover the container by default
-    backgroundSize: "cover",
+  //   // Set background size to cover the container by default
+  //   backgroundSize: "cover",
 
-    // Center the background image by default
-    backgroundPosition: "center",
+  //   // Center the background image by default
+  //   backgroundPosition: "center",
 
-    // Media query for mobile devices
-    "@media (maxWidth: 768px)": {
-      backgroundSize: "auto", // Adjust background size for smaller screens
-      backgroundPosition: "center", // You can adjust this as needed
-    },
-  };
+  //   // Media query for mobile devices
+  //   "@media (maxWidth: 768px)": {
+  //     backgroundSize: "auto", // Adjust background size for smaller screens
+  //     backgroundPosition: "center", // You can adjust this as needed
+  //   },
+  // };
   return (
     // <html suppressHydrationWarning>
-      <body className=" bg-black" style={headerStyle}>
+      // <body className=" bg-black" style={headerStyle}>
         <ThemeProvider enableSystem>
           <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
         </ThemeProvider>
-      </body>
+      // </body>
     // </html>
   );
 };

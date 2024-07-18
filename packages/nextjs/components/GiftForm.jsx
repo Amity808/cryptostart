@@ -7,7 +7,7 @@ import { render } from "@react-email/components";
 import { peanut } from "@squirrel-labs/peanut-sdk";
 import { ethers } from "ethers";
 // import toast from "react-hot-toast";
-// import { useAccount, useReadContract, useSimulateContract, useWriteContract } from "wagmi";
+import { useAccount } from "wagmi";
 import useLoading from "~~/hooks/useLoading";
 import { useScaffoldWriteContract } from "../hooks/scaffold-eth";
 
