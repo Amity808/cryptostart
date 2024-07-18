@@ -24,7 +24,7 @@ const GiftForm = () => {
   const [recipentName, setRecipentName] = useState("");
   const [subjectLine, setSubjectLine] = useState("");
 
-
+//  push
   const { writeContractAsync } = useScaffoldWriteContract("StartPay")
   const createPyament = async () => {
     if (!window.ethereum) {
