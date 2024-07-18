@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "zksync",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -118,6 +118,10 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.publicgoods.network",
       accounts: [deployerPrivateKey],
     },
+    zksync: {
+      url: "https://sepolia.era.zksync.dev",
+      accounts: [deployerPrivateKey],
+    }
   },
   // configuration for harhdat-verify plugin
   etherscan: {
