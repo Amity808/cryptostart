@@ -8,6 +8,7 @@ import type { NextPage } from "next";
 import Hero from "../components/Hero"
 import Service from "../components/Service"
 import Show from "../components/Show"
+import Step from "../components/Step"
 
 const Home: NextPage = () => {
   // const { address: connectedAddress } = useAccount();
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
         <Hero />
         <Show />
         <Service />
+        <Step />
         
       </div>
     </>
