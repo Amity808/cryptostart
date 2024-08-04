@@ -23,6 +23,9 @@ const GiftForm = () => {
   const [email, setEmail] = useState("");
   const [recipentName, setRecipentName] = useState("");
   const [subjectLine, setSubjectLine] = useState("");
+  const [tokenType, setTokenType] = useState(0);
+  const [tokenAddress, setTokenAddress] = useState("");
+  
 
 //  push
   const { writeContractAsync } = useScaffoldWriteContract("StartPay")
@@ -142,7 +145,7 @@ const GiftForm = () => {
           Send payment
         </button>
       </form>
-      <button onClick={sendEmail}>pay</button>
+      {/* <button onClick={sendEmail}>pay</button> */}
       <p>{txStatus}</p>
     </div>
   );
