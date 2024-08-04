@@ -23,8 +23,8 @@ const GiftForm = () => {
   const [email, setEmail] = useState("");
   const [recipentName, setRecipentName] = useState("");
   const [subjectLine, setSubjectLine] = useState("");
-  const [tokenType, setTokenType] = useState(0);
-  const [tokenAddress, setTokenAddress] = useState("");
+  // const [tokenType, setTokenType] = useState(0);
+  // const [tokenAddress, setTokenAddress] = useState("");
   
 
 //  push
