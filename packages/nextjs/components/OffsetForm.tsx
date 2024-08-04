@@ -1,12 +1,12 @@
 import React, { useState} from 'react'
-import { useScaffoldWriteContract } from '~~/hooks/scaffold-eth'
+// import { useScaffoldWriteContract } from '~~/hooks/scaffold-eth'
 import { useAccount } from "wagmi";
 import { ethers } from "ethers";
 import Abi from "~~/contracts/abi.json"
 
-type Props = {}
 
-const OffsetForm = (props: Props) => {
+
+const OffsetForm = () => {
     const [loading, setloading] = useState(false)
     const { address } = useAccount()
     const config = {
@@ -15,7 +15,7 @@ const OffsetForm = (props: Props) => {
     };
     const token = "0x671425ae1f272bc6f79bec3ed5c4b00e9c628240";
 
-    const { writeContractAsync } = useScaffoldWriteContract("GDAv1Forwarder")
+    // const { writeContractAsync } = useScaffoldWriteContract("GDAv1Forwarder")
     let provider: any;
     if (typeof window !== 'undefined' && window.ethereum) {
         provider = new ethers.providers.Web3Provider(window?.ethereum, "any")
@@ -42,18 +42,18 @@ const OffsetForm = (props: Props) => {
     }
     console.log(loading)
 
-    const handlewrite = async () => {
-        try {
-            const result = await writeContractAsync({
-                functionName: "createPool",
-                args: [token, address, config]
-            })
-            await result
-            console.log("writeContractAsync result:", result)
-        } catch (error) {
-            console.error(error, "error writing")
-        }
-    }
+    // const handlewrite = async () => {
+    //     try {
+    //         const result = await writeContractAsync({
+    //             functionName: "createPool",
+    //             args: [token, address, config]
+    //         })
+    //         await result
+    //         console.log("writeContractAsync result:", result)
+    //     } catch (error) {
+    //         console.error(error, "error writing")
+    //     }
+    // }
     return (
         <div>
             <button onClick={createNewPol}>Create pool</button>
