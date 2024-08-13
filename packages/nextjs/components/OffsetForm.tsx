@@ -47,7 +47,7 @@ const OffsetForm = () => {
 
     
     
-    console.log(loading)
+    
     return (
         <div>
             <button onClick={createNewPol}>Create pool</button>
