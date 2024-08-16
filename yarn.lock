@@ -2426,6 +2426,7 @@ __metadata:
     vercel: ~32.4.1
     viem: 2.13.6
     wagmi: 2.9.8
+    zksync-ethers: ^6.11.2
     zustand: ~4.1.2
   languageName: unknown
   linkType: soft
@@ -15257,6 +15258,15 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
+  languageName: node
+  linkType: hard
+
+"zksync-ethers@npm:^6.11.2":
+  version: 6.11.2
+  resolution: "zksync-ethers@npm:6.11.2"
+  peerDependencies:
+    ethers: ^6.7.1
+  checksum: 8ddc1c9803b583530d4488314e28f5261b587b62026b9f2b3a2216c32b42c777a0cfc9b85e935f536c4673c7899931fe4605c3971d8701023ebbf9702ace3bbf
   languageName: node
   linkType: hard
 
