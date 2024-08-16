@@ -1,5 +1,6 @@
 import React from "react";
-import GiftCard from "./GiftCard"
+import GiftCard from "./GiftCard";
+
 const AllGiftERC20 = () => {
   return (
     <div>

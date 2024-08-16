@@ -5,12 +5,10 @@
 // import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 // import { getBlockExplorerTxLink, getParsedError, notification } from "~~/utils/scaffold-eth";
 // import { TransactorFuncOptions } from "~~/utils/scaffold-eth/contract";
-
 // type TransactionFunc = (
 //   tx: (() => Promise<Hash>) | Parameters<SendTransactionMutate<Config, undefined>>[0],
 //   options?: TransactorFuncOptions,
 // ) => Promise<Hash | undefined>;
-
 // /**
 //  * Custom notification content for TXs.
 //  */
@@ -26,7 +24,6 @@
 //     </div>
 //   );
 // };
-
 // /**
 //  * Runs Transaction passed in to returned function showing UI feedback.
 //  * @param _walletClient - Optional wallet client to use. If not provided, will use the one from useWalletClient.
@@ -38,21 +35,18 @@
 //   if (walletClient === undefined && data) {
 //     walletClient = data;
 //   }
-
 //   const result: TransactionFunc = async (tx, options) => {
 //     if (!walletClient) {
 //       notification.error("Cannot access account");
 //       console.error("⚡️ ~ file: useTransactor.tsx ~ error");
 //       return;
 //     }
-
 //     let notificationId = null;
 //     let transactionHash: Hash | undefined = undefined;
 //     try {
 //       const network = await walletClient.getChainId();
 //       // Get full transaction from public client
 //       const publicClient = getPublicClient(wagmiConfig);
-
 //       notificationId = notification.loading(<TxnNotification message="Awaiting for user confirmation" />);
 //       if (typeof tx === "function") {
 //         // Tx is already prepared by the caller
@@ -64,26 +58,21 @@
 //         throw new Error("Incorrect transaction passed to transactor");
 //       }
 //       notification.remove(notificationId);
-
 //       const blockExplorerTxURL = network ? getBlockExplorerTxLink(network, transactionHash) : "";
-
 //       notificationId = notification.loading(
 //         <TxnNotification message="Waiting for transaction to complete." blockExplorerLink={blockExplorerTxURL} />,
 //       );
-
 //       const transactionReceipt = await publicClient.waitForTransactionReceipt({
 //         hash: transactionHash,
 //         confirmations: options?.blockConfirmations,
 //       });
 //       notification.remove(notificationId);
-
 //       notification.success(
 //         <TxnNotification message="Transaction completed successfully!" blockExplorerLink={blockExplorerTxURL} />,
 //         {
 //           icon: "🎉",
 //         },
 //       );
-
 //       if (options?.onBlockConfirmation) options?.onBlockConfirmation(transactionReceipt);
 //     } catch (error: any) {
 //       if (notificationId) {
@@ -94,10 +83,8 @@
 //       notification.error(message);
 //       throw error;
 //     }
-
 //     return transactionHash;
 //   };
-
 //   return result;
 // };
 import { getPublicClient } from "@wagmi/core";

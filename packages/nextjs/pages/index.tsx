@@ -1,14 +1,14 @@
 "use client";
 
 // import Link from "next/link";
-import type { NextPage } from "next";
 // import { useAccount } from "wagmi";
 // import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 // import { Address } from "~~/components/scaffold-eth";
-import Hero from "../components/Hero"
-import Service from "../components/Service"
-import Show from "../components/Show"
-import Step from "../components/Step"
+import Hero from "../components/Hero";
+import Service from "../components/Service";
+import Show from "../components/Show";
+import Step from "../components/Step";
+import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   // const { address: connectedAddress } = useAccount();
@@ -20,7 +20,6 @@ const Home: NextPage = () => {
         <Show />
         <Service />
         <Step />
-        
       </div>
     </>
   );

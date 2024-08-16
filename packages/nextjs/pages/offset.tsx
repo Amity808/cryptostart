@@ -1,12 +1,12 @@
-import React from 'react'
-import OffsetForm from '~~/components/OffsetForm'
+import React from "react";
+import OffsetForm from "~~/components/OffsetForm";
 
 const Offset = () => {
   return (
     <div>
-        <OffsetForm />
+      <OffsetForm />
     </div>
-  )
-}
+  );
+};
 
-export default Offset
+export default Offset;
