@@ -10,6 +10,9 @@ import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 import useLoading from "~~/hooks/useLoading";
 import { useScaffoldWriteContract } from "../hooks/scaffold-eth";
+import StartPay from "~~/contracts/startpay.json"
+import { useWriteContract, useSimulateContract } from "wagmi"
+import { walletClient, publicClient } from "../helper/wagmiconfig"
 
 
 const GiftForm = () => {
@@ -63,8 +66,9 @@ const GiftForm = () => {
     }
   };
 
-  const sendEmail = async () => {
-    const emailHtml = render(<SendGiftMail userFirstname={recipentName} address={address} link={link} />);
+
+  const sendEmail = async (linkz) => {
+    const emailHtml = render(<SendGiftMail userFirstname={recipentName} address={address} link={linkz} />);
     try {
       const response = await fetch('/api/send/email', {
         method: "POST",
@@ -87,13 +91,30 @@ const GiftForm = () => {
     }
   }
   
+  const request = publicClient.simulateContract(walletClient, {
+    address: StartPay.address,
+    abi: StartPay.abi,
+    functionName: "giftUser", 
+    args: [address, link, content]
+
+  })
 
   const handlewrite = async () => {
     try {
-        await writeContractAsync({
-            functionName: "giftUser",
-            args: [address, link, content],
-        })
+        // await writeContractAsync({
+        //     functionName: "giftUser",
+        //     args: [address, link, content],
+        // })
+
+        if (request) {
+          const response = await walletClient.writeContract({
+            ...request,
+          })
+
+          console.log(response, "response")
+        } else {
+          throw new Error("Request object is undefined")
+        }
     } catch (error) {
         console.error(error, "error writing")
     }

@@ -45,6 +45,9 @@ import {
           <Text style={paragraph}>
               {content}
           </Text>
+          <Text style={paragraph}>
+              {link}
+          </Text>
           <Section style={btnContainer}>
             <Button style={button} href={link}>
               Claim Token
