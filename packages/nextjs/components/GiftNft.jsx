@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import SendGiftMail from "./email/SendGiftMail";
 import CustomInput from "./ui/CustomInput";
@@ -7,27 +5,22 @@ import { render } from "@react-email/components";
 import { peanut } from "@squirrel-labs/peanut-sdk";
 import { ethers } from "ethers";
 import { getGeneralPaymasterInput } from "viem/zksync";
-// import toast from "react-hot-toast";
 import { useAccount } from "wagmi";
 import StartPay from "~~/contracts/startpay.json";
 import { walletClient } from "~~/helper/wagmiconfig";
 import useLoading from "~~/hooks/useLoading";
 
-const GiftForm = () => {
+const GiftNft = () => {
+  const [NFTTokenId, setNFTTokenId] = useState("");
+  const [nftAddress, setNftAddress] = useState("");
   const { isLoading: isLoadGift, startLoading: startLoadPGift, stopLoading: stopLoadPGift } = useLoading();
-  const [amount, setAmount] = useState("");
 
-  const { address } = useAccount();
   const [link, setLink] = useState("");
-  const [txStatus, setTxStatus] = useState("");
   const [content, setContent] = useState("");
   const [email, setEmail] = useState("");
-  const [recipentName, setRecipentName] = useState("");
-  const [subjectLine, setSubjectLine] = useState("");
-  // const [tokenType, setTokenType] = useState(0);
-  // const [tokenAddress, setTokenAddress] = useState("");
-
   const paymasterAddress = "0x7afF0B53fe17231195968869c39B1D33599eDaB1";
+  const { address } = useAccount();
+
   const createPyament = async () => {
     if (!window.ethereum) {
       throw new Error("MetaMask is not installed");
@@ -41,35 +34,46 @@ const GiftForm = () => {
       if (!signer) throw new Error("Connect your wallet");
       const network = await signer.provider.getNetwork();
       const chainId = network.chainId;
-      console.log(chainId);
-      const { link, txHash } = await peanut.createLink({
-        structSigner: {
-          signer: signer,
-        },
-        linkDetails: {
-          chainId,
-          tokenAmount: amount,
-          tokenDecimals: 18,
-          tokenType: 0,
-        },
+
+      const linkDetails = {
+        chainId: chainId,
+        tokenAddress: [nftAddress],
+        tokenAmount: 1,
+        tokenType: 2,
+        tokenId: [NFTTokenId],
+      };
+
+      const password = await peanut.getRandomString(16);
+      const preparedTransactions = await peanut.prepareDepositTxs({
+        address: address,
+        linkDetails,
+        passwords: [password],
+      });
+
+      const transactionHashes = [];
+
+      for (const unsignedTx of preparedTransactions.unsignedTxs) {
+        const convertedTx = peanut.peanutToEthersV5Tx(unsignedTx);
+
+        const signedTx = await wallet.sendTransaction(convertedTx);
+
+        transactionHashes.push(signedTx.hash);
+      }
+
+      const { link } = await peanut.getLinksFromTx({
+        linkDetails,
+        passwords: [password],
+        txHash: transactionHashes[transactionHashes.length - 1],
       });
       setLink(link);
       setTxStatus(txHash);
       console.log(link);
-      return link;
+      return link[0];
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const params = utils.getPaymasterParams(
-  //   paymaster,
-  //   {
-  //     type: "General",
-  //     innerInput: new Uint8Array()
-  //   }
-  // )
-
+  // sending email
   const sendEmail = async linkz => {
     const emailHtml = render(<SendGiftMail userFirstname={recipentName} address={address} link={linkz} />);
     try {
@@ -105,11 +109,6 @@ const GiftForm = () => {
     }
 
     try {
-      // await writeContractAsync({
-      //     functionName: "giftUser",
-      //     args: [address, link, content],
-      // })
-
       if (request) {
         const response = await walletClient?.writeContract({
           // ...request,
@@ -130,9 +129,8 @@ const GiftForm = () => {
       console.error(error, "error writing");
     }
   };
-  console.log(isLoadGift, "loading");
 
-  const perfromGift = async e => {
+  const sendNft = async e => {
     e.preventDefault();
     startLoadPGift();
     try {
@@ -150,37 +148,44 @@ const GiftForm = () => {
 
   return (
     <div>
-      <form onSubmit={perfromGift} className="  flex gap-3 flex-col justify-center items-center mt-6">
-        <p className=" text-xl font-semibold">Start payment</p>
+      <form onSubmit={sendNft} className="  flex gap-3 flex-col justify-center items-center mt-6">
+        <p className=" text-xl font-semibold">Start Nft</p>
         <CustomInput
-          className={"w-[500px] "}
+          className={"w-[700px] "}
           onChange={e => setRecipentName(e.target.value)}
           placeholder={"Recipent Name"}
         />
         <CustomInput
-          className={" w-[500px]"}
+          className={" w-[700px]"}
           onChange={e => setEmail(e.target.value)}
           placeholder={"Reciepent Email"}
         />
         <CustomInput
-          className={" w-[500px]"}
-          onChange={e => setSubjectLine(e.target.value)}
-          placeholder={"Email Subject Line"}
+          className={" w-[700px]"}
+          onChange={e => setNftAddress(e.target.value)}
+          placeholder={"NFT address"}
         />
-        <CustomInput className={" w-[500px]"} onChange={e => setAmount(e.target.value)} placeholder={"amount"} />
+        <CustomInput
+          className={" w-[700px]"}
+          onChange={e => setSubjectLine(e.target.value)}
+          placeholder={"NFT Email Subject Line"}
+        />
         <CustomInput
           className={" w-[500px]"}
+          onChange={e => setNFTTokenId(e.target.value)}
+          placeholder={"NFT Token ID"}
+        />
+        <CustomInput
+          className={" w-[700px]"}
           onChange={e => setContent(e.target.value)}
           placeholder={"Email content"}
         />
         <button className=" rounded-md bg-purple-800 py-3 px-2" disabled={isLoadGift}>
-          Send payment
+          Send NFT
         </button>
       </form>
-      {/* <button onClick={sendEmail}>pay</button> */}
-      <p>{txStatus}</p>
     </div>
   );
 };
 
-export default GiftForm;
+export default GiftNft;
