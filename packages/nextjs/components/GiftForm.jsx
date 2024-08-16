@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { publicClient, walletClient } from "../helper/wagmiconfig";
-import { useScaffoldWriteContract } from "../hooks/scaffold-eth";
 import SendGiftMail from "./email/SendGiftMail";
 import CustomInput from "./ui/CustomInput";
 import { render } from "@react-email/components";
@@ -30,7 +29,6 @@ const GiftForm = () => {
 
   //  push
   const paymasterAddress = "0x7afF0B53fe17231195968869c39B1D33599eDaB1";
-  const { writeContractAsync } = useScaffoldWriteContract("StartPay");
   const createPyament = async () => {
     if (!window.ethereum) {
       throw new Error("MetaMask is not installed");
