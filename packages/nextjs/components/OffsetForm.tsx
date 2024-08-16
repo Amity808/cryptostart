@@ -2,7 +2,7 @@ import React from "react";
 // import { useScaffoldWriteContract } from '~~/hooks/scaffold-eth'
 // import { useAccount } from "wagmi";
 // import { ethers } from "ethers";
-import { createNewPol } from "~~/distributionpool";
+// import { createNewPol } from "~~/distributionpool";
 
 const OffsetForm = () => {
   // const [loading, setloading] = useState(false)
@@ -12,7 +12,8 @@ const OffsetForm = () => {
   //     transferabilityForUnitsOwner: true,
   //     distributionFromAnyAddress: false,
   // };
-  // const token = "0x671425ae1f272bc6f79bec3ed5c4b00e9c628240";
+  // const token = 
+//   "0x671425ae1f272bc6f79bec3ed5c4b00e9c628240";
 
   // const { writeContractAsync } = useScaffoldWriteContract("GDAv1Forwarder")
   // let provider: any;
@@ -42,7 +43,8 @@ const OffsetForm = () => {
   return (
     <div>
       {/* <p>p{provider}</p> */}
-      <button onClick={createNewPol}>Create pool</button>
+      <p>Offset Carbon </p>
+      {/* <button onClick={createNewPol}>Create pool</button> */}
     </div>
   );
 };

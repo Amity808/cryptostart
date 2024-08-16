@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Service = () => {
   const headerStyle = {
@@ -27,7 +28,7 @@ const Service = () => {
       </div>
       <div className=" flex flex-row mt-[100px] justify-around items-center lg:flex-row max-lg:flex-row md:flex-row max-md:flex-row sm:flex-col max-sm:flex-col">
         <div>
-          <img src={"/coin.png"} alt="coin" />
+          <Image width={100} height={100} src={"/coin.png"} alt="coin" />
         </div>
         <div>
           <h4 className=" font-medium text-lg text-white">24/7 access to full service customer support</h4>

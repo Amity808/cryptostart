@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { publicClient, walletClient } from "../helper/wagmiconfig";
+import { walletClient } from "~~/helper/wagmiconfig";
 import SendGiftMail from "./email/SendGiftMail";
 import CustomInput from "./ui/CustomInput";
 import { render } from "@react-email/components";
@@ -105,15 +105,7 @@ const GiftForm = () => {
       throw new Error("No account found. Please connect your wallet."); // Throw an error if no account is found
     }
 
-    const request = publicClient?.simulateContract(walletClient, {
-      address: StartPay.address,
-      abi: StartPay.abi,
-      functionName: "giftUser",
-      args: [address, link, content],
-      account,
-      paymaster: paymasterAddress,
-      paymasterInput: getGeneralPaymasterInput({ innerInput: new Uint8Array() }),
-    });
+    
     try {
       // await writeContractAsync({
       //     functionName: "giftUser",

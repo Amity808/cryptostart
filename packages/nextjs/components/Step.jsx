@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Service = () => {
   // const headerStyle = {
@@ -27,7 +28,7 @@ const Service = () => {
           <button className=" text-white border-2 border-solid py-2 px-4 rounded-lg">Get Start</button>
         </div>
         <div>
-          <img src={"/bag.png"} alt="coin" />
+          <Image src={"/bag.png"} width={100} height={100} alt="coin" />
         </div>
       </div>
     </div>
