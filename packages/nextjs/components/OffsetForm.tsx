@@ -3,10 +3,11 @@ import React, { useState} from 'react'
 import { useAccount } from "wagmi";
 import { ethers } from "ethers";
 import Abi from "~~/contracts/abi.json"
-
+import { createNewPol, handleUpdateMembers } from "~~/distributionpool"
 
 const OffsetForm = () => {
     const [loading, setloading] = useState(false)
+    const [memberAddress, setMemberAddress] = useState("")
     const { address } = useAccount()
     const config = {
         transferabilityForUnitsOwner: true,
@@ -21,38 +22,31 @@ const OffsetForm = () => {
     }
 
 
-    const createNewPol = async () => {
-        setloading(true)
-        try {
-            const signer = await provider?.getSigner();
-            const contract = new ethers.Contract(Abi.address, Abi.abi, signer)
-
-            const tx = await contract.createPool(token, address, config);
-            const receipt = await tx.wait();
-            console.log(receipt)
-            return receipt.events.find((event: any) => event.event === "PoolCreated").args
-                .pool;
-                setloading(false)
-        } catch (error) {
-            setloading(false)
-            console.log(error)
-
-        }
-    }
-    console.log(loading)
-
-    // const handlewrite = async () => {
+    // const createNewPol = async () => {
+    //     setloading(true)
     //     try {
-    //         const result = await writeContractAsync({
-    //             functionName: "createPool",
-    //             args: [token, address, config]
-    //         })
-    //         await result
-    //         console.log("writeContractAsync result:", result)
+    //         const signer = await provider?.getSigner();
+    //         const contract = new ethers.Contract(Abi.address, Abi.abi, signer)
+
+    //         const tx = await contract.createPool(token, address, config);
+    //         const receipt = await tx.wait();
+    //         console.log(receipt)
+    //         return receipt.events.find((event: any) => event.event === "PoolCreated").args
+    //             .pool;
+    //             setloading(false)
     //     } catch (error) {
-    //         console.error(error, "error writing")
+    //         setloading(false)
+    //         console.log(error)
+
     //     }
     // }
+
+    
+
+
+    
+    
+    
     return (
         <div>
             <button onClick={createNewPol}>Create pool</button>
