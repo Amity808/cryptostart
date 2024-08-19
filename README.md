@@ -40,3 +40,12 @@ yarn
 ```js
 yarn run dev 
 ```
+
+### Technologies I used
+1. Nextjs
+2. Hardhat
+3. Solidity
+4. Peanut
+
+### How we built it
+I was able to use peanut protocol to anchor the link for transaction processing into a link. When a user generates a link, it will be sent to the recipient email through nodemailer and react-email component. Users have a page where they can view their link.
