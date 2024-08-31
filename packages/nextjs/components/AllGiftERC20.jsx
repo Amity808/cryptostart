@@ -1,7 +1,33 @@
 import React from "react";
 import GiftCard from "./GiftCard";
+import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
+
 
 const AllGiftERC20 = () => {
+  const { data, isLoading } = useScaffoldReadContract({
+    contractName: "StartPay",
+    functionName: "giftLen",
+    // args: [address, id]
+  });
+
+  const giftLenght = data? Number(data.toString()) : 0;
+  const getGiftLength = () => {
+    // if there is no waste recorded, return null 
+    if(!giftLenght) return null;
+    const gifts = [];
+    // looping through the data
+    for (let i = 0; i < giftLenght; i++) {
+      gifts.push(
+        <Product 
+          key={i}
+          id={i}
+          />
+          )
+    }
+    return gifts;
+  }
+
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -17,28 +43,12 @@ const AllGiftERC20 = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
+            {getGiftLength()}
             {/* row 2 */}
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
+            
             {/* row 3 */}
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
           </tbody>
-          <GiftCard />
+          {/* <GiftCard  /> */}
         </table>
       </div>
     </div>

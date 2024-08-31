@@ -15,9 +15,8 @@ contract StartPay {
         address payable gifter;
         string link;
         string content;
-        // address claimer;
     }
-    // GDAv1Forwarder.sol
+   
 
     mapping (address => mapping( uint256 => Gift)) public _gifts;
 

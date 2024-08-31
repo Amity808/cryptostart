@@ -12,7 +12,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
  * } as const;
  */
 const externalContracts = {
-  300: {
+  1: {
     StartPay: {
       address: "0x5055cC0C35258024b131a33dacC277fFf7a60f66",
       abi: [
