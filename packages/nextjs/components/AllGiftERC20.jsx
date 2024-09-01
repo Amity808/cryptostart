@@ -18,7 +18,7 @@ const AllGiftERC20 = () => {
     // looping through the data
     for (let i = 0; i < giftLenght; i++) {
       gifts.push(
-        <Product 
+        <GiftCard 
           key={i}
           id={i}
           />
