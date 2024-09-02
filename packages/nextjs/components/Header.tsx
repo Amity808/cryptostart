@@ -34,6 +34,11 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/gift/all",
     // icon: <BugAntIcon className="h-4 w-4" />,
   },
+  {
+    label: "Send Erc20",
+    href: "/senderc20",
+    // icon: <BugAntIcon className="h-4 w-4" />,
+  },
 ];
 
 export const HeaderMenuLinks = () => {
