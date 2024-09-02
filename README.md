@@ -18,6 +18,12 @@ Cross-border payments and gifting through cryptocurrencies have always posed sig
 
 4. Enhanced User Experience with Account Abstraction
 
+### Features
+
+1. User can zksync token 
+2. User can send support ERC20
+3. User can sen ERC721 through email address
+
 #### To Get Started With the project cd packages/nexjs
 ```js
 cd packages/nextjs
